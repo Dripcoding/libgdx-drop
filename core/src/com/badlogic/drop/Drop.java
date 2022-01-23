@@ -2,6 +2,7 @@ package com.badlogic.drop;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -69,6 +70,17 @@ public class Drop extends ApplicationAdapter {
 			camera.unproject(touchPos); // transform input coordinates
 			bucket.x = touchPos.x - 62 / 2; // center bucket around input  position
 		}
+
+		// make bucket move - keyboard input
+			// move without acceleration 200 pixels/second
+			// need time passed between last and the current rendering frame
+		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) bucket.x -= 200 * Gdx.graphics.getDeltaTime();
+		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) bucket.x += 200 * Gdx.graphics.getDeltaTime();
+
+		// ensure bucket stays within screen limits
+		if(bucket.x < 0) bucket.x = 0;
+		if(bucket.x > 800 - 64) bucket.x = 800 - 64;
+
 	}
 	
 	@Override
