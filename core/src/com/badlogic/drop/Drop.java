@@ -124,7 +124,10 @@ public class Drop extends ApplicationAdapter {
 	
 	@Override
 	public void dispose () {
-//		batch.dispose();
-//		img.dispose();
+		dropImage.dispose();
+		bucketImage.dispose();
+		dropSound.dispose();
+		rainMusic.dispose();
+		batch.dispose();
 	}
 }
